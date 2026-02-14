@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Arsyah 💖 Icaa</title>
+<title>Untuk Icaa ❤️</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
 
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
@@ -17,18 +17,18 @@ height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-background:linear-gradient(135deg,#ffe6f0,#ffd6ec,#fff5fa);
+background:linear-gradient(135deg,#ffe6f0,#ffd6ec,#fff0f6);
 font-family:'Quicksand',sans-serif;
 overflow:hidden;
 }
 
-/* floating petals */
+/* petals */
 .petal{
 position:fixed;
 top:-20px;
-font-size:20px;
+font-size:18px;
 animation:fall linear infinite;
-opacity:0.6;
+opacity:0.7;
 }
 @keyframes fall{
 to{
@@ -36,76 +36,72 @@ transform:translateY(110vh) rotate(360deg);
 }
 }
 
+/* envelope */
+.envelope{
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 40px rgba(255,105,180,0.4);
+text-align:center;
+cursor:pointer;
+animation:fadeIn 2s;
+}
+
+@keyframes fadeIn{
+from{opacity:0;}
+to{opacity:1;}
+}
+
 .card{
-background:rgba(255,255,255,0.7);
+background:rgba(255,255,255,0.75);
 backdrop-filter:blur(15px);
 padding:40px;
-border-radius:30px;
-box-shadow:0 15px 40px rgba(255,182,193,0.4);
+border-radius:25px;
+box-shadow:0 15px 50px rgba(255,105,180,0.4);
 text-align:center;
 width:90%;
 max-width:420px;
-animation:fade 1.5s ease;
-}
-
-@keyframes fade{
-from{opacity:0; transform:translateY(20px);}
-to{opacity:1; transform:translateY(0);}
+display:none;
 }
 
 .title{
 font-family:'Playfair Display',serif;
 font-size:28px;
 color:#ff4da6;
-margin-bottom:15px;
+margin-bottom:10px;
 }
 
-.photo-frame{
+.photo{
 width:220px;
 height:220px;
-margin:0 auto 15px auto;
+margin:auto;
 border-radius:20px;
 overflow:hidden;
-box-shadow:0 10px 30px rgba(255,105,180,0.4);
-animation:zoom 6s infinite alternate ease-in-out;
-opacity:0;
-animation-delay:1s;
-animation-fill-mode:forwards;
+box-shadow:0 0 30px rgba(255,105,180,0.6);
+margin-bottom:20px;
 }
 
-@keyframes zoom{
-from{transform:scale(1);}
-to{transform:scale(1.05);}
-}
-
-.photo-frame img{
+.photo img{
 width:100%;
 height:100%;
 object-fit:cover;
 }
 
-.fade-in{
-animation:appear 2s forwards;
+.text{
+font-size:18px;
+color:#444;
+min-height:100px;
 }
 
-@keyframes appear{
-to{opacity:1;}
-}
 button{
+margin-top:20px;
 padding:12px 25px;
 border:none;
 border-radius:30px;
-background:#ff66a3;
+background:#ff4da6;
 color:white;
 font-size:16px;
 cursor:pointer;
-transition:0.3s;
-margin-top:15px;
-}
-
-button:hover{
-transform:scale(1.1);
-box-shadow:0 0 20px pink;
 }
 
 .hidden{display:none;}
@@ -114,58 +110,83 @@ box-shadow:0 0 20px pink;
 </head>
 <body>
 
-<audio id="music"lagu.mp3 loop>
-<source src="lagu.mp3">
-</ lagu.mp3>
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c8c8a73467.mp3?filename=romantic-love-ambient-11079.mp3">
+</audio>
 
-<div class="card" id="letter">
-<p>💌 hapy valantine yah ca maap yah cowok mu ini belum bisa ngasih apa apa</p>
-<button onclick="openLove()">Buka 🎀</button>
+<audio id="heartbeat" loop>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/10/audio_6c9c9bb5c1.mp3?filename=heartbeat-11034.mp3">
+</audio>
+
+<div class="envelope" onclick="openLetter()" id="envelope">
+💌 Klik untuk membuka surat cinta
 </div>
-}foto.jpg
-<div class="card hidden" id="main">
-<div class="title">Arsyah 💖 Icaa</div>
 
-<div class="photo-frame fade-in">
-<img src= "foto.jpg" alt="Arsyah dan Icaa">
-</foto.jpg>
+<div class="card" id="card">
 
-<p>
-hai icaa ini cowok mu lohh 🌸💕  
-aku bener bener berterima kasih banyak samaa kamuu icaa,aku hanya ingin ini cinta terakhir ku
-  aku penuh dengan kekurangan tapi kamu mau menerima nya 
-  kamu orang yang peduli ama aku dan kamu lah tujuan ku ini valantine pertama kita
-  semogaa tahun depan masih bisa gini yahh icaa
-  bismillah aja yahh👉👈🩷
-</p>
+<div class="title">Arsyah ❤️ Icaa</div>
 
-<button onclick="celebrate()">Selamanya 💖</button>
-<button onclick="save()">Save Memory 📸</button>
+<div class="photo">
+<img src="foto.jpg">
+</div>
+
+<div class="text" id="loveText"></div>
+
+<button onclick="celebrate()">Aku juga sayang kamu ❤️</button>
+<button onclick="save()">Simpan kenangan 📸</button>
+
 </div>
 
 <script>
 
-// floating petals
-for(let i=0;i<15;i++){
+// petals
+for(let i=0;i<20;i++){
 let p=document.createElement("div");
 p.className="petal";
 p.innerHTML="🌸";
 p.style.left=Math.random()*100+"vw";
 p.style.animationDuration=(5+Math.random()*5)+"s";
 document.body.appendChild(p);
-}foto.jpg
+}
 
 // open letter
-function openLove(){
-document.getElementById("music").play();
-document.getElementById("letter").classList.add("hidden");
-document.getElementById("main").classList.remove("hidden");
-}foto.jpg
+function openLetter(){
+
+music.play();
+heartbeat.play();
+
+document.getElementById("envelope").style.display="none";
+document.getElementById("card").style.display="block";
+
+typeWriter();
+}
+
+// romantic text
+let text =
+"Hai Icaa...\n\n" +
+"Aku mungkin bukan orang sempurna,\n" +
+tapi setiap hari aku selalu bersyukur karena ada kamu.\n\n" +
+"Kamu adalah alasan aku tersenyum,\n" +
+alasan aku semangat,\n" +
+dan alasan hatiku terasa hangat.\n\n" +
+"Aku nggak tahu masa depan seperti apa,\n" +
+tapi aku tahu aku ingin menjalaninya bersama kamu.\n\n" +
+— Arsyah ❤️";
+
+let i=0;
+
+function typeWriter(){
+if(i<text.length){
+document.getElementById("loveText").innerHTML += text.charAt(i);
+i++;
+setTimeout(typeWriter,40);
+}
+}
 
 // confetti
 function celebrate(){
 confetti({
-particleCount:200,
+particleCount:300,
 spread:120,
 origin:{y:0.6}
 });
@@ -176,7 +197,7 @@ function save(){
 html2canvas(document.body).then(canvas=>{
 let a=document.createElement("a");
 a.href=canvas.toDataURL();
-a.download="arsyah-icaa-photo-memory.png";
+a.download="arsyah-icaa-love-letter.png";
 a.click();
 });
 }
