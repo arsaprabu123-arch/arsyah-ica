@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Untuk Alisyaa ❤️</title>
+<style>
+body {
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:linear-gradient(270deg,#ff9a9e,#fad0c4,#fbc2eb);
+  background-size:600% 600%;
+  animation:bgMove 15s ease infinite;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  color:white;
+}
+@keyframes bgMove {
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.envelope {
+  width:280px;height:180px;
+  background:white;border-radius:15px;
+  box-shadow:0 15px 40px rgba(0,0,0,0.4);
+  display:flex;justify-content:center;align-items:center;
+  flex-direction:column;
+  cursor:pointer;color:#ff2d55;
+  animation:bounce 1.2s infinite;
+  transition:0.3s;
+}
+.envelope span{font-size:60px;}
+@keyframes bounce{50%{transform:translateY(-15px)}}
+
+.kepo{animation:blink 1.5s infinite;font-weight:bold;}
+@keyframes blink{50%{opacity:0.3}}
+
+.card{
+  display:none;
+  background:rgba(255,255,255,0.2);
+  padding:30px;border-radius:25px;
+  text-align:center;
+  max-width:800px;
+  backdrop-filter:blur(10px);
+  animation:fadeIn 1.5s ease;
+}
+@keyframes fadeIn{
+  from{opacity:0;transform:scale(0.8)}
+  to{opacity:1;transform:scale(1)}
+}
+
+.name{
+  font-size:2.8em;font-weight:bold;
+  animation:glow 2s infinite alternate,float 4s infinite;
+}
+@keyframes glow{
+  from{text-shadow:0 0 10px #fff}
+  to{text-shadow:0 0 30px #ff2d55,0 0 60px #fff}
+}
+@keyframes float{50%{transform:translateY(-10px)}}
+
+.flower,.heart,.confetti{
+  position:absolute;top:-20px;
+  animation:fall linear infinite;
+}
+@keyframes fall{to{transform:translateY(110vh)}}
+
+.flash{
+  position:fixed;top:0;left:0;
+  width:100%;height:100%;
+  background:white;opacity:0;
+  pointer-events:none;
+}
+
+#text{white-space:pre-line;min-height:220px;line-height:1.8}
+.btn{
+  margin:6px;padding:10px 18px;
+  border:none;border-radius:25px;
+  background:#ff2d55;color:white;
+  cursor:pointer;
+}
+.timer{font-size:0.8em;opacity:0.7}
+#deepBox{margin-top:15px;font-style:italic;opacity:0.9}
+</style>
+</head>
+<body>
+
+<div class="flash" id="flash"></div>
+
+<audio id="music" loop>
+<source src="https://cdn.pixabay.com/audio/2022/10/25/audio_8b0b6c5b9b.mp3">
+</audio>
+
+<audio id="clickSound">
+<source src="https://cdn.pixabay.com/audio/2022/03/15/audio_2c64e8f9b7.mp3">
+</audio>
+
+<div class="envelope" id="env" onclick="handleClick()">
+  <span>💌</span>
+  <p class="kepo" id="info">Klik 3x ya 😏</p>
+</div>
+
+<div class="card" id="card">
+  <div class="name">Alisyaa Faridatul Najwa</div>
+  <h2>Happy Valentine ❤️</h2>
+  <div id="text"></div>
+
+  <button class="btn" onclick="memoryMode()">Kenangan Kita 🧠</button>
+  <button class="btn" onclick="confession()">Isi Hatiku 💬</button>
+  <button class="btn" onclick="nightMode()">Mode Malam 🌙</button>
+  <button class="btn" onclick="unlockLast()">Pesan Terakhir 🔒</button>
+
+  <p style="margin-top:10px;">Ganti Background 🎨</p>
+  <button class="btn" onclick="setTheme('romantic')">🌸 Romantic</button>
+  <button class="btn" onclick="setTheme('cute')">🌈 Cute</button>
+  <button class="btn" onclick="setTheme('night')">🌙 Night</button>
+  <button class="btn" onclick="setTheme('sparkle')">💖 Sparkle</button>
+  <button class="btn" onclick="setTheme('fun')">🎮 Fun</button>
+
+  <div id="deepBox"></div>
+
+  <div id="question" style="display:none;">
+    <p>Kamu masih mau sama aku?</p>
+    <button class="btn" onclick="alert('Aku bahagia banget 😭❤️')">Iya ❤️</button>
+    <button class="btn" onclick="alert('Aku tetap sayang kamu 💔')">Enggak</button>
+  </div>
+
+  <div class="timer" id="timer"></div>
+  <button class="btn" id="nextBtn" onclick="nextPart()">Lanjut baca</button>
+</div>
+
+<script>
+let clicks=0;
+function handleClick(){
+  clicks++;
+  clickSound.play();
+  if(navigator.vibrate) navigator.vibrate(100);
+  env.style.transform=`scale(${1+clicks*0.1}) rotate(${clicks*5}deg)`;
+
+  if(clicks==1){spawn("🌹",20,"flower");info.innerText="Lagi dong 😏";}
+  if(clicks==2){spawn("❤️",30,"heart");info.innerText="Sekali lagi 😳";}
+  if(clicks==3){flashEffect();confetti();start();}
+}
+
+function flashEffect(){
+  flash.style.opacity=1;
+  setTimeout(()=>flash.style.opacity=0,200);
+}
+
+function spawn(icon,count,cls){
+  for(let i=0;i<count;i++){
+    let e=document.createElement("div");
+    e.className=cls;
+    e.innerHTML=icon;
+    e.style.left=Math.random()*100+"vw";
+    e.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(e);
+  }
+}
+
+function confetti(){
+  for(let i=0;i<50;i++){
+    let c=document.createElement("div");
+    c.className="confetti";
+    c.innerHTML="✨";
+    c.style.left=Math.random()*100+"vw";
+    c.style.animationDuration=(3+Math.random()*4)+"s";
+    document.body.appendChild(c);
+  }
+}
+
+let parts=[
+`Alisyaa…
+Happy Valentine ya.
+Maaf aku belum bisa ngasih apa-apa yang istimewa hari ini.
+Aku cuma bisa ngasih versi diriku yang paling jujur,
+dengan perasaan yang kadang berantakan tapi tulus buat kamu.`,
+
+`Aku sadar aku sering kurang komunikasi.
+Sering telat ngerti perasaan kamu,
+sering sibuk dengan duniaku sendiri,
+padahal kamu cuma pengen dimengerti.`,
+
+`Habis kita berantem,
+aku kepikiran banyak hal.
+Bukan soal siapa yang salah,
+tapi soal betapa takutnya aku kehilangan kamu.`,
+
+`Aku mau belajar jadi lebih baik.
+Bukan karena kamu minta,
+tapi karena aku pengen pantas buat kamu.`,
+
+`Aku harap kamu cinta terakhirku.
+Aku pengen kamu jadi rumah,
+bukan cuma persinggahan.`,
+
+`Aku sayang kamu, Alisyaa.
+Dengan semua kurangku,
+dan semua harapanku tentang kita. 🤍`
+];
+
+let idx=0,char=0,cur="";
+function start(){
+  env.style.display="none";
+  card.style.display="block";
+  music.play();
+  typeText();
+  startTimer();
+}
+function typeText(){
+  let t=parts[idx];
+  if(char<t.length){
+    cur+=t.charAt(char);
+    text.innerText=cur;
+    char++;
+    setTimeout(typeText,40);
+  }
+}
+function nextPart(){
+  if(idx<parts.length-1){
+    idx++;char=0;cur="";
+    text.innerText="";
+    typeText();
+  } else {
+    nextBtn.style.display="none";
+    question.style.display="block";
+  }
+}
+
+function memoryMode(){
+deepBox.innerText=
+"Aku gak tau kenangan apa yang paling kamu inget tentang aku. Tapi buat aku, setiap chat, setiap marah kecil, setiap tawa kamu, itu semua jadi bagian hidupku.";
+}
+
+function confession(){
+deepBox.innerText=
+"Aku sering pura-pura kuat. Padahal aku takut banget kehilangan kamu. Aku takut suatu hari kamu capek, dan aku gak ada lagi di hidup kamu.";
+heartBeat();
+}
+
+function heartBeat(){
+let beat=setInterval(()=>{
+document.body.style.background="linear-gradient(270deg,#ff4b5c,#fad0c4,#ff4b5c)";
+setTimeout(()=>{document.body.style.background="linear-gradient(270deg,#ff9a9e,#fad0c4,#fbc2eb)";},200);
+},800);
+setTimeout(()=>clearInterval(beat),6000);
+}
+
+function nightMode(){
+document.body.style.background="#0f0f1a";
+deepBox.innerText=
+"Kalau suatu hari aku hilang dari hidupmu, apa kamu bakal nyari aku? Atau cuma jadi cerita yang kamu inget sebentar?";
+}
+
+function unlockLast(){
+deepBox.innerText=
+"Aku harap kamu cinta terakhirku. Kalau dunia capek sama kita, aku tetap mau berdiri di sisi kamu.";
+}
+
+function setTheme(theme){
+if(theme=="romantic")
+document.body.style.background="linear-gradient(270deg,#ff9a9e,#fad0c4,#fbc2eb)";
+if(theme=="cute")
+document.body.style.background="linear-gradient(270deg,#a18cd1,#fbc2eb,#fad0c4)";
+if(theme=="night")
+document.body.style.background="linear-gradient(270deg,#0f0f1a,#1f1f3a,#0f0f1a)";
+if(theme=="sparkle")
+document.body.style.background="linear-gradient(270deg,#ff4b5c,#ffb6c1,#ffe4e1)";
+if(theme=="fun")
+document.body.style.background="linear-gradient(270deg,#43cea2,#185a9d,#43cea2)";
+}
+
+let startTime=new Date();
+function startTimer(){
+setInterval(()=>{
+let d=Math.floor((new Date()-startTime)/1000);
+timer.innerText="Sejak kamu buka: "+d+" detik";
+},1000);
+}
+</script>
+</body>
+</html>
