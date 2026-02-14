@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Untuk Alisyaa ❤️</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(270deg, #ff9a9e, #fad0c4, #fbc2eb);
+  background-size: 600% 600%;
+  animation: bgMove 15s ease infinite;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+@keyframes bgMove {
+  0% {background-position:0% 50%}
+  50% {background-position:100% 50%}
+  100% {background-position:0% 50%}
+}
+
+/* Amplop */
+.envelope {
+  width: 300px;
+  height: 200px;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  text-align: center;
+  color: #ff4b5c;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+.envelope span { font-size:60px; }
+
+/* Amplop loncat */
+.bounce {
+  animation: bounce 1.2s infinite;
+}
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+
+/* Kepo */
+.kepo {
+  font-weight: bold;
+  color: #ff2d55;
+  animation: blink 1.5s infinite;
+}
+@keyframes blink {
+  0%,100% { opacity:1; }
+  50% { opacity:0.3; }
+}
+
+/* Card */
+.card {
+  display: none;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border-radius: 25px;
+  text-align: center;
+  max-width: 650px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 1.5s ease;
+}
+
+/* Nama */
+.name {
+  font-size: 2.8em;
+  font-weight: bold;
+  animation: glow 2s infinite alternate, floatName 4s ease-in-out infinite;
+}
+@keyframes glow {
+  from { text-shadow:0 0 10px #fff; }
+  to { text-shadow:0 0 30px #ff2d55,0 0 60px #fff; }
+}
+@keyframes floatName {
+  50% { transform: translateY(-10px); }
+}
+
+#text { line-height:1.8; min-height:200px; white-space:pre-line; }
+
+/* Button */
+.btn {
+  margin:10px;
+  padding:10px 22px;
+  border:none;
+  border-radius:25px;
+  background:#ff2d55;
+  color:white;
+  cursor:pointer;
+}
+
+/* Bunga & hati */
+.flower, .heart {
+  position:absolute;
+  top:-20px;
+  font-size:24px;
+  animation: fall 10s linear infinite;
+}
+@keyframes fall {
+  100% { transform: translateY(110vh); }
+}
+
+.timer {
+  margin-top:10px;
+  font-size:0.9em;
+  opacity:0.8;
+}
+
+@keyframes fadeIn {
+  from { opacity:0; transform:scale(0.9); }
+  to { opacity:1; transform:scale(1); }
+}
+</style>
+</head>
+<body>
+
+<!-- Musik -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/10/25/audio_8b0b6c5b9b.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Amplop -->
+<div class="envelope bounce" onclick="start()">
+  <span>💌</span>
+  <p class="kepo">Kepo ya? 😏</p>
+</div>
+
+<!-- Card -->
+<div class="card" id="card">
+  <div class="name">Alisyaa Faridatul Najwa</div>
+  <h2>Happy Valentine ❤️</h2>
+  <div id="text"></div>
+
+  <div id="question" style="display:none;">
+    <p>Kamu masih mau sama aku?</p>
+    <button class="btn" onclick="yes()">Iya ❤️</button>
+    <button class="btn" onclick="no()">Enggak 💔</button>
+  </div>
+
+  <div class="timer" id="timer"></div>
+  <button class="btn" id="nextBtn" onclick="nextPart()">Lanjut baca</button>
+</div>
+
+<script>
+let parts = [
+`Alisyaa…
+Happy Valentine ya.
+Maaf aku belum bisa ngasih apa-apa yang istimewa.`,
+
+`Yang aku punya sekarang cuma perasaan ini,
+yang sederhana,
+tapi tulus buat kamu.`,
+
+`Maafin aku ya soal komunikasiku.
+Aku sering kurang peka,
+padahal aku nggak mau kehilangan kamu.`,
+
+`Habis berantem kemarin,
+aku sadar satu hal:
+kamu penting banget buat hidupku.`,
+
+`Aku mau tetap sama kamu.
+Bukan cuma pas senang,
+tapi juga pas capek dan ribut.`,
+
+`Aku sayang kamu, Alisyaa.
+Dengan segala keterbatasanku,
+tapi dengan perasaan yang beneran. 🤍`
+];
+
+let index=0, charIndex=0, currentText="";
+
+function start(){
+  document.querySelector('.envelope').style.display='none';
+  document.getElementById('card').style.display='block';
+  document.getElementById('music').play();
+  explode();
+  flowers();
+  typeText();
+  startTimer();
+  if (navigator.vibrate) navigator.vibrate(200);
+}
+
+function typeText(){
+  let text=parts[index];
+  if(charIndex<text.length){
+    currentText+=text.charAt(charIndex);
+    document.getElementById("text").innerText=currentText;
+    charIndex++;
+    setTimeout(typeText,40);
+  }
+}
+
+function nextPart(){
+  if(index<parts.length-1){
+    index++;
+    charIndex=0;
+    currentText="";
+    document.getElementById("text").innerText="";
+    typeText();
+  } else {
+    document.getElementById("nextBtn").style.display="none";
+    document.getElementById("question").style.display="block";
+  }
+}
+
+function yes(){
+  alert("Aku bahagia banget 😭❤️");
+}
+function no(){
+  alert("Aku tetap sayang kamu, meskipun sakit 💔");
+}
+
+function flowers(){
+  for(let i=0;i<25;i++){
+    let f=document.createElement("div");
+    f.className="flower";
+    f.style.left=Math.random()*100+"vw";
+    f.innerHTML="🌸";
+    document.body.appendChild(f);
+  }
+}
+
+function explode(){
+  for(let i=0;i<30;i++){
+    let h=document.createElement("div");
+    h.className="heart";
+    h.style.left=Math.random()*100+"vw";
+    h.innerHTML="❤️";
+    document.body.appendChild(h);
+  }
+}
+
+let startTime = new Date();
+function startTimer(){
+  setInterval(()=>{
+    let now=new Date();
+    let diff=Math.floor((now-startTime)/1000);
+    document.getElementById("timer").innerText =
+      "Detik sejak kamu membuka ini: "+diff+" detik";
+  },1000);
+}
+</script>
+</body>
+</html>
