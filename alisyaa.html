@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Untuk Alisyaa ❤️</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+/* Amplop */
+.envelope {
+  width: 300px;
+  height: 200px;
+  background: #fff;
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  text-align: center;
+  color: #ff4b5c;
+}
+.envelope::before {
+  content: "💌";
+  font-size: 60px;
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.envelope p {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  font-weight: bold;
+}
+
+/* Card */
+.card {
+  display: none;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  border-radius: 25px;
+  text-align: center;
+  max-width: 600px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 1.5s ease;
+}
+
+/* Nama glowing */
+.name {
+  font-size: 2.8em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  animation: glow 2s infinite alternate, floatName 4s ease-in-out infinite;
+  color: #fff;
+  text-shadow: 0 0 10px #fff,
+               0 0 20px #ff9a9e,
+               0 0 40px #ff4b5c;
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fff,
+                 0 0 20px #ff9a9e;
+  }
+  to {
+    text-shadow: 0 0 20px #fff,
+                 0 0 40px #ff4b5c,
+                 0 0 60px #ff2d55;
+  }
+}
+
+@keyframes floatName {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+h1 { font-size: 2em; }
+
+#text {
+  line-height: 1.8;
+  min-height: 200px;
+  white-space: pre-line;
+  margin-top: 10px;
+}
+
+/* Button */
+.btn {
+  margin-top: 15px;
+  padding: 10px 22px;
+  border: none;
+  border-radius: 30px;
+  background: #ff2d55;
+  color: white;
+  cursor: pointer;
+}
+
+/* Bunga */
+.flower {
+  position: absolute;
+  top: -20px;
+  font-size: 24px;
+  animation: fall 10s linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(110vh); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+<body>
+
+<!-- Musik romantis -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/10/25/audio_8b0b6c5b9b.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Amplop -->
+<div class="envelope" onclick="start()">
+  <p>Klik untuk membuka surat</p>
+</div>
+
+<!-- Card utama -->
+<div class="card" id="card">
+  <div class="name">Alisyaa Faridatul Najwa</div>
+  <h1>Happy Valentine ❤️</h1>
+  <div id="text"></div>
+  <button class="btn" id="nextBtn" onclick="nextPart()">Lanjut baca</button>
+</div>
+
+<script>
+let parts = [
+`Alisyaa…
+
+Happy Valentine ya.
+Maaf aku belum bisa ngasih apa-apa yang istimewa.
+Belum bisa ngasih hadiah mahal,
+belum bisa ngasih dunia.`,
+
+`Yang aku punya sekarang cuma perasaan ini,
+yang sederhana,
+yang tulus,
+yang beneran buat kamu.`,
+
+`Maafin aku ya soal komunikasiku.
+Aku sering kurang peka,
+sering telat ngabarin,
+sering bikin kamu ngerasa sendirian.`,
+
+`Padahal yang paling aku takutin itu
+bukan berantem sama kamu…
+tapi kehilangan kamu.`,
+
+`Aku mungkin belum jadi yang terbaik,
+tapi aku mau belajar,
+mau berubah,
+mau berjuang.`,
+
+`Kalau kamu masih mau…
+aku pengen tetap sama kamu, Alisyaa.
+Pelan-pelan,
+tapi serius,
+dan tulus. 🤍`
+];
+
+let index = 0;
+let charIndex = 0;
+let currentText = "";
+
+function start() {
+  document.querySelector('.envelope').style.display = 'none';
+  document.getElementById('card').style.display = 'block';
+  document.getElementById('music').play();
+  flowers();
+  typeText();
+}
+
+function typeText() {
+  let text = parts[index];
+  if (charIndex < text.length) {
+    currentText += text.charAt(charIndex);
+    document.getElementById("text").innerText = currentText;
+    charIndex++;
+    setTimeout(typeText, 40);
+  }
+}
+
+function nextPart() {
+  if (index < parts.length - 1) {
+    index++;
+    charIndex = 0;
+    currentText = "";
+    document.getElementById("text").innerText = "";
+    typeText();
+  } else {
+    document.getElementById("nextBtn").style.display = "none";
+    document.getElementById("text").innerText += 
+      "\n\nTerima kasih sudah membaca sampai habis.\nAku beneran sayang kamu, Alisyaa ❤️";
+  }
+}
+
+function flowers() {
+  for (let i = 0; i < 30; i++) {
+    let flower = document.createElement('div');
+    flower.className = 'flower';
+    flower.style.left = Math.random() * 100 + 'vw';
+    flower.style.animationDelay = Math.random() * 5 + 's';
+    flower.innerHTML = '🌸';
+    document.body.appendChild(flower);
+  }
+}
+</script>
+
+</body>
+</html>
