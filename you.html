@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Untuk Ica ❤️</title>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.envelope {
+  width: 300px;
+  height: 200px;
+  background: #fff;
+  position: relative;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.envelope::before {
+  content: "💌";
+  font-size: 60px;
+  position: absolute;
+  top: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.envelope p {
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  color: #ff4b5c;
+  font-weight: bold;
+}
+
+.card {
+  display: none;
+  background: rgba(255,255,255,0.2);
+  padding: 40px;
+  border-radius: 25px;
+  text-align: center;
+  color: white;
+  max-width: 600px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 1.5s ease;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+p {
+  line-height: 1.8;
+  white-space: pre-line;
+}
+
+.flower {
+  position: absolute;
+  top: -20px;
+  font-size: 24px;
+  animation: fall 10s linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(110vh); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.btn {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 30px;
+  background: #ff2d55;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<!-- Musik romantis -->
+<audio id="music" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/10/25/audio_8b0b6c5b9b.mp3" type="audio/mpeg">
+</audio>
+
+<div class="envelope" onclick="openLetter()">
+  <p>Klik untuk membuka</p>
+</div>
+
+<div class="card" id="letter">
+  <h1>Happy Valentine, Ica ❤️</h1>
+  <p>
+Ica…
+
+Happy Valentine ya.
+Maaf aku belum bisa ngasih apa-apa yang istimewa,
+belum bisa ngasih hadiah mahal,
+belum bisa ngasih dunia seperti yang kamu pantas dapatkan.
+
+Yang aku punya sekarang cuma perasaan ini,
+yang tulus,
+yang sederhana,
+tapi beneran buat kamu.
+
+Maafin aku juga soal komunikasiku.
+Aku sering kurang peka,
+sering telat ngabarin,
+sering bikin kamu ngerasa sendirian
+padahal kamu lagi butuh aku.
+
+Aku masih banyak kurangnya,
+tapi aku mau belajar jadi lebih baik,
+pelan-pelan,
+bukan buat siapa-siapa,
+tapi buat kita.
+
+Terima kasih masih mau bertahan sama aku,
+masih mau sabar,
+masih mau percaya.
+
+Aku sayang kamu, Ica.
+Bukan cuma hari ini,
+tapi setiap hari,
+dengan cara yang mungkin belum sempurna,
+tapi selalu tulus. 🤍
+  </p>
+
+  <button class="btn" onclick="alert('Terima kasih masih mau sama aku, Ica ❤️')">
+    Maafin aku ya?
+  </button>
+</div>
+
+<!-- Bunga jatuh -->
+<script>
+function openLetter() {
+  document.querySelector('.envelope').style.display = 'none';
+  document.getElementById('letter').style.display = 'block';
+  document.getElementById('music').play();
+
+  for (let i = 0; i < 20; i++) {
+    let flower = document.createElement('div');
+    flower.className = 'flower';
+    flower.style.left = Math.random() * 100 + 'vw';
+    flower.style.animationDelay = Math.random() * 5 + 's';
+    flower.innerHTML = '🌸';
+    document.body.appendChild(flower);
+  }
+}
+</script>
+
+</body>
+</html>
