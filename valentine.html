@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Untuk Ica ❤️</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 40px;
+      border-radius: 25px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      max-width: 600px;
+      animation: fadeIn 2s ease;
+    }
+
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.15em;
+      line-height: 1.8;
+      white-space: pre-line;
+    }
+
+    .heart {
+      font-size: 90px;
+      animation: beat 1s infinite;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .btn {
+      margin-top: 25px;
+      padding: 14px 30px;
+      border: none;
+      border-radius: 30px;
+      background: #ff2d55;
+      color: white;
+      font-size: 1em;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background: #ff0033;
+    }
+
+    .floating span {
+      position: absolute;
+      bottom: -20px;
+      font-size: 24px;
+      animation: float 12s linear infinite;
+      opacity: 0.8;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0); }
+      100% { transform: translateY(-110vh); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- MUSIK ROMANTIS (support semua browser) -->
+  <audio autoplay loop>
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
+    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.ogg" type="audio/ogg">
+    Browser kamu tidak mendukung audio.
+  </audio>
+
+  <div class="card">
+    <div class="heart">❤️</div>
+    <h1>Untuk Ica</h1>
+    <p>
+Icaaa…
+
+Maaf ya aku belum bisa ngasih apa-apa.
+Belum bisa jadi yang paling sempurna,
+belum bisa selalu ada dengan semua yang kamu mau.
+
+Tapi satu hal yang pasti…
+perasaanku ke kamu itu nyata.
+
+Aku mungkin nggak kaya,
+nggak selalu romantis dengan hadiah,
+tapi setiap doa yang aku ucapkan,
+selalu ada nama kamu di dalamnya.
+
+Terima kasih sudah mau bertahan,
+sudah mau sabar,
+sudah mau tetap di sini sama aku.
+
+Kalau suatu hari nanti aku berhasil,
+hal pertama yang ingin aku bahagiakan…
+adalah kamu, Ica.
+
+Aku sayang kamu.
+Dengan cara yang sederhana,
+tapi tulus,
+dan ingin selamanya. 🤍
+    </p>
+
+    <button class="btn" onclick="alert('Aku beneran sayang kamu, Ica ❤️')">
+      Klik ini kalau kamu masih mau sama aku
+    </button>
+  </div>
+
+  <div class="floating">
+    <span style="left:10%; animation-delay:0s;">❤️</span>
+    <span style="left:25%; animation-delay:2s;">💖</span>
+    <span style="left:40%; animation-delay:4s;">💘</span>
+    <span style="left:60%; animation-delay:1s;">❤️</span>
+    <span style="left:75%; animation-delay:3s;">💗</span>
+    <span style="left:90%; animation-delay:5s;">💕</span>
+  </div>
+
+</body>
+</html>
